@@ -1,8 +1,8 @@
-weatherApp.controller('homeController', ['$scope', '$location', 'cityService', function($scope, $location, cityService) {
-    $scope.city = cityService.city;
+weatherApp.controller('homeController', ['$scope', '$location', 'CityService', function($scope, $location, CityService) {
+    $scope.city = CityService.city;
     
     $scope.$watch('city', function() {
-       cityService.city = $scope.city; 
+        CityService.city = $scope.city; 
     });
     
     $scope.submit = function() {
