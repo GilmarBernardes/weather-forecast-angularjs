@@ -1,5 +1,10 @@
 
 <div>
+    <p>
+        <a href="#/">
+            Back to Search
+        </a>
+    </p>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title text-center">
@@ -12,19 +17,23 @@
             <div class="alert alert-danger" role="alert" ng-show="paramDays > 5 || paramDays < 0">
                 <strong>Error:</strong> The forecast should display a minimum of 1 day and a maximum of 5 days.
             </div>
+            Days: 
+            <a href="#/forecast/1" ng-class="{ 'bg-primary': days ==='1' }">1</a>
+            <a href="#/forecast/2" ng-class="{ 'bg-primary': days ==='2' }">2</a>
+            <a href="#/forecast/3" ng-class="{ 'bg-primary': days ==='3' }">3</a>
+            <a href="#/forecast/4" ng-class="{ 'bg-primary': days ==='4' }">4</a>
+            <a href="#/forecast/5" ng-class="{ 'bg-primary': days ==='5' }">5</a>
+            <hr />
+            
             <div ng-repeat="w in weatherResultList">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    {{ convertDate(w.dt) | date: 'MMM d, y H:mm' }}
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                Daytime Temperature: {{ convertToCelsius(w.main.temp) }}°C
-                            </div>
-                        </div>
+                        <weather-report 
+                            weather-day="w"
+                            convert-to-standard="convertToCelsius(daytimeTemp)"
+                            convert-to-date="convertDate(dt)"
+                            datetime-format="MMM d, y H:mm">
+                        </weather-report>
                     </div>
                 </div>
             </div>
