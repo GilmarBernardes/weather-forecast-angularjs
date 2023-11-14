@@ -1,1 +1,33 @@
-Forecast
+
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">
+                <strong>
+                    Forecast for {{ city }}
+                </strong>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-danger" role="alert" ng-show="paramDays > 5 || paramDays < 0">
+                <strong>Error:</strong> The forecast should display a minimum of 1 day and a maximum of 5 days.
+            </div>
+            <div ng-repeat="w in weatherResultList">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    {{ convertDate(w.dt) | date: 'MMM d, y H:mm' }}
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                Daytime Temperature: {{ convertToCelsius(w.main.temp) }}°C
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
